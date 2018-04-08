@@ -1,0 +1,85 @@
+
+<!-- The config page, refer to static/js/controller -->
+<div>
+
+  <span class="page-header">
+    <!-- Display config title and the JSON link -->
+    <h1 class="page-header-left">{{'PD Schedule Configuration'|translate}} <a ng-href="{{canonicalServer}}/config/json" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
+  </span> <!-- End of page header -->
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!config" class="alert alert-danger" role="alert">{{'no_such_config'|translate}}</div>
+
+  <!-- Display config information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>{{'attribute'|translate}}</th>
+        <th>{{'value'|translate}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+	  <tr>
+        <td>{{'client-urls'|translate}}</td>
+        <td>{{config['client-urls'] }}</td> <!-- Shorten config id -->
+      </tr>
+	      <tr>
+        <td>{{'peer-urls'|translate}}</td>
+        <td>{{config['peer-urls'] }}</td> <!-- Shorten config id -->
+      </tr>
+	
+      <tr>
+        <td>{{'max-snapshot-count'|translate}}</td>
+        <td>{{config.schedule['max-snapshot-count'] }}</td> <!-- Shorten config id -->
+      </tr>
+
+      <tr>
+        <td>{{'max-pending-peer-count'|translate}}</td>
+        <td>{{config.schedule['max-pending-peer-count']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'max-merge-region-size'|translate}}</td>
+        <td>{{config.schedule['max-merge-region-size']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'max-store-down-time'|translate}}</td>
+        <td>{{config.schedule['max-store-down-time']}}</td>
+      </tr>
+	
+      <tr>
+        <td>{{'leader-schedule-limit'|translate}}</td>
+        <td>{{config.schedule['leader-schedule-limit']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'region-schedule-limit'|translate}}</td>
+        <td>{{config.schedule['region-schedule-limit']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'replica-schedule-limit'|translate}}</td>
+        <td>{{config.schedule['replica-schedule-limit']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'merge-schedule-limit'|translate}}</td>
+        <td>{{config.schedule['merge-schedule-limit']}}</td>
+      
+	  </tr>
+	      <tr>
+        <td>{{'max-replicas'|translate}}</td>
+        <td>{{config.replication['max-replicas']}}</td>
+      </tr>
+
+	  </tr>
+	      <tr>
+        <td>{{'location-labels'|translate}}</td>
+        <td>{{config.replication['ocation-labels']}}</td>
+      </tr>
+	</tbody>
+  </table>
+
+</div> <!-- End of this angular page -->

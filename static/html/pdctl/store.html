@@ -1,0 +1,85 @@
+
+<!-- The store page, refer to static/js/controller -->
+<div>
+
+  <span class="page-header">
+    <!-- Display store title and the JSON link -->
+    <h1 class="page-header-left">{{'store'|translate}} </h1>
+  </span> <!-- End of page header -->
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!store" class="alert alert-danger" role="alert">{{'no_such_store'|translate}}</div>
+
+  <!-- Display store information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>{{'attribute'|translate}}</th>
+        <th>{{'value'|translate}}</th>å
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>{{'Id'|translate}}</td>
+        <td>{{store.store.id | limitTo:12}}</td> <!-- Shorten store id -->
+      </tr>
+
+      <tr>
+        <td>{{'Address'|translate}}</td>
+        <td>{{store.store.address}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Status'|translate}}</td>
+        <td>{{store.store.state_name}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Capacity'|translate}}</td>
+        <td>{{store.status.capacity}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Available'|translate}}</td>
+        <td>{{store.status.available}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Leader_count'|translate}}</td>
+        <td>{{store.status.leader_count}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Leader_weight'|translate}}</td>
+        <td>{{store.status.leader_weight}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Region_count'|translate}}</td>
+        <td>{{store.status.region_count | limitTo:12}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Region_weight'|translate}}</td>
+        <td>{{store.status.region_weight | limitTo:12}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Start_ts'|translate}}</td>
+        <td>{{store.status.start_ts | limitTo:12}}</td>
+      </tr>
+	
+      <tr>
+        <td>{{'Last_heartbeat_ts'|translate}}</td>
+        <td>{{store.status.last_heartbeat_ts | limitTo:12}}</td>
+      </tr>
+		
+      <tr>
+        <td>{{'Uptime'|translate}}</td>
+        <td>{{store.status.uptime}}</td>
+      </tr>
+ 	</tbody>
+ </table>
+
+</div> <!-- End of this angular page -->

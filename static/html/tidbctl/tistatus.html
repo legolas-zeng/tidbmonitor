@@ -1,0 +1,40 @@
+
+<!-- The stauts page, refer to static/js/controller -->
+<div>
+
+  <span class="page-header">
+    <!-- Display stauts title and the JSON link -->
+    <h1 class="page-header-left">{{'TiDB information'|translate}} <a ng-href="{{canonicalServer}}/tistatus/json" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
+  </span> <!-- End of page header -->
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!tistatus" class="alert alert-danger" role="alert">{{'no_such_tistatus'|translate}}</div>
+
+  <!-- Display stauts information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>{{'attribute'|translate}}</th>
+        <th>{{'value'|translate}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+	  <tr>
+        <td>{{'connections'|translate}}</td>
+        <td>{{tistatus['connections'] }}</td> <!-- Shorten stauts id -->
+      </tr>
+	      <tr>
+        <td>{{'version'|translate}}</td>
+        <td>{{tistatus['version'] }}</td> <!-- Shorten stauts id -->
+      </tr>
+	
+      <tr>
+        <td>{{'git_hash'|translate}}</td>
+        <td>{{tistatus['git_hash'] }}</td> <!-- Shorten stauts id -->
+      </tr>
+	
+	</tbody>
+  </table>
+
+</div> <!-- End of this angular page -->

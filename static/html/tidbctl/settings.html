@@ -1,0 +1,130 @@
+
+<!-- The setting page, refer to static/js/controller -->
+<div>
+
+  <span class="page-header">
+    <!-- Display setting title and the JSON link -->
+    <h1 class="page-header-left">{{'TiDB Settings'|translate}} <a ng-href="{{canonicalServer}}/tidbsetting/json" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
+  </span> <!-- End of page header -->
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!setting" class="alert alert-danger" role="alert">{{'no_such_setting'|translate}}</div>
+
+  <!-- Display setting information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>{{'attribute'|translate}}</th>
+        <th>{{'value'|translate}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+	  <tr>
+        <td>{{'host'|translate}}</td>
+        <td>{{setting['host'] }}</td> <!-- Shorten setting id -->
+      </tr>
+	      <tr>
+        <td>{{'port'|translate}}</td>
+        <td>{{setting['port'] }}</td> <!-- Shorten setting id -->
+      </tr>
+	
+      <tr>
+        <td>{{'store'|translate}}</td>
+        <td>{{setting['store'] }}</td> <!-- Shorten setting id -->
+      </tr>
+
+      <tr>
+        <td>{{'path'|translate}}</td>
+        <td>{{setting['path']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'lease'|translate}}</td>
+        <td>{{setting['lease']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'run-ddl'|translate}}</td>
+        <td>{{setting['run-ddl']}}</td>
+      </tr>
+	
+      <tr>
+        <td>{{'split-table'|translate}}</td>
+        <td>{{setting['split-table']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'enable-streaming'|translate}}</td>
+        <td>{{setting['enable-streaming']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'log-rotate'|translate}}</td>
+        <td>{{setting.log['log-rotate']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'slow-query-file'|translate}}</td>
+        <td>{{setting['slow-query-file']}}</td>
+	  </tr>
+	 
+	  <tr>
+        <td>{{'slow-threshold'|translate}}</td>
+        <td>{{setting['slow-threshold']}}</td>
+      </tr>
+	  
+	  <tr>
+        <td>{{'expensive-threshold'|translate}}</td>
+        <td>{{setting['expensive-threshold']}}</td>
+      </tr>
+	 
+	  <tr>
+        <td>{{'report-status'|translate}}</td>
+        <td>{{setting.status['report-status']}}</td>
+      </tr>
+	
+	  <tr>
+        <td>{{'status-port'|translate}}</td>
+        <td>{{setting.status['status-port']}}</td>
+      </tr>
+	
+	  <tr>
+        <td>{{'metrics-addr'|translate}}</td>
+        <td>{{setting.status['metrics-addr']}}</td>
+      </tr>
+	
+	  <tr>
+        <td>{{'cross-join'|translate}}</td>
+        <td>{{setting.performance['cross-join']}}</td>
+      </tr>	
+
+	  <tr>
+        <td>{{'stats-lease'|translate}}</td>
+        <td>{{setting.performance['stats-lease']}}</td>
+      </tr>	
+
+	  <tr>
+        <td>{{'run-auto-analyze'|translate}}</td>
+        <td>{{setting.performance['run-auto-analyze']}}</td>
+      </tr>	
+
+	  <tr>
+        <td>{{'stmt-count-limit'|translate}}</td>
+        <td>{{setting.performance['stmt-count-limit']}}</td>
+      </tr>	
+
+	  <tr>
+        <td>{{'grpc-connection-count'|translate}}</td>
+        <td>{{setting['tikv-client']['grpc-connection-count']}}</td>
+      </tr>	
+
+	  <tr>
+        <td>{{'commit-timeout'|translate}}</td>
+        <td>{{setting['tikv-client']['commit-timeout']}}</td>
+      </tr>	
+						
+	</tbody>
+  </table>
+
+</div> <!-- End of this angular page -->

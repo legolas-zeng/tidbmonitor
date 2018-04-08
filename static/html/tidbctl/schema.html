@@ -1,0 +1,37 @@
+
+<!-- The stauts page, refer to static/js/controller -->
+<div>
+
+  <span class="page-header">
+    <!-- Display schema title and the JSON link -->
+    <h1 class="page-header-left">{{'TiDB Schema information'|translate}} <a ng-href="{{canonicalServer}}/schema/json" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
+  </span> <!-- End of page header -->
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!schemas" class="alert alert-danger" role="alert">{{'no_such_schema'|translate}}</div>
+
+  <!-- Display schema information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+	    <th><a href="" ng-click="predicate='id' reverse=!reverse">{{'ID'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='db_name'; reverse=!reverse">{{'DB_name'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='charset'; reverse=!reverse">{{'Charset'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='collate'; reverse=!reverse">{{'Collate'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='state'; reverse=!reverse">{{'State'|translate}}</a></th>
+      </tr>
+    </thead>
+
+    <tbody>
+	  <tr ng-repeat="schema in schemas | orderBy:schema.id :reverse track by $index  ">
+        <td>{{schema.id | limitTo:12}}</td> <!-- Shorten stauts id -->       
+		<td><a ng-href="/schema/{{schema.db_name['L']}}">{{schema.db_name['L']}}</a></td> 
+        <td>{{schema['charset'] }}</td> 
+        <td>{{schema['collate'] }}</td> 
+        <td>{{schema['state'] }}</td> 			
+      </tr>
+	  
+	</tbody>
+  </table>
+
+</div> <!-- End of this angular page -->

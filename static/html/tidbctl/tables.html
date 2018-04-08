@@ -1,0 +1,54 @@
+
+<!-- The tables page, refer to static/js/controller -->
+<div>
+
+   <span class="page-header">
+    <!-- Display images title and the JSON link -->
+    <h1 class="page-header-left">{{'TiDB Tables'|translate}}</h1>
+
+    <!-- Display search form in the right -->
+    <div class="page-header-right">
+      <input type="text" class="form-control" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
+    </div>
+  </span> <!-- End of page header -->
+
+  <!-- Todo: No need to use <br/> -->
+  <br/><br/><br/><br/>
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!tables.length" class="alert alert-danger" role="alert">{{'no_tables'|translate}}</div>
+
+
+  <!-- Display all images information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><a href="" ng-click="predicate='id'; reverse=!reverse">{{'Id'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='name'; reverse=!reverse">{{'Table_Name'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='charset'; reverse=!reverse">{{'charset Leader'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='auto_inc_id'; reverse=!reverse">{{'auto_inc_id'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='update_timestamp'; reverse=!reverse">{{'update_timestamp'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='comment'; reverse=!reverse">{{'comment'|translate}}</a></th>		
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- When search result is null, display the message -->
+      <tr ng-show="(tables | filter: search).length == 0">
+        <td colspan="10" align="center">{{'no_search_result_for'|translate}} <b style="color:blue">{{search}}</b></td>
+      </tr>
+
+      <tr ng-repeat="table in tables | filter: search | orderBy:predicate:reverse track by $index ">
+	       	<td>{{table.id}}</td> <!-- Add comma between tags --> 
+			<td><a ng-href="/schema/{{table.name.L}}">{{table.name.L}}</a></td> <!-- Shorten tables id -->
+	        <td>{{table.charset}}</td>
+	        <td>{{table.auto_inc_id}}</td> 
+			<td>{{table.status.region_count}}</td> 
+	        <td>{{table.update_timestamp}}</td> 
+	        <td>{{table.comment}}</td>
+	</tr>
+    </tbody>
+  </table>
+
+</div> <!-- End of this angular page -->
+

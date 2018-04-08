@@ -1,0 +1,55 @@
+
+<!-- The region page, refer to static/js/controller -->
+<div>
+
+  <span class="page-header">
+    <!-- Display region title and the JSON link -->
+    <h1 class="page-header-left">{{'region'|translate}} <a ng-href="{{canonicalServer}}/region/{{region.id}}/json" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
+  </span> <!-- End of page header -->
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!region" class="alert alert-danger" role="alert">{{'no_such_region'|translate}}</div>
+
+  <!-- Display region information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>{{'attribute'|translate}}</th>
+        <th>{{'value'|translate}}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>{{'Region Id'|translate}}</td>
+        <td>{{region.id | limitTo:12}}</td> <!-- Shorten region id -->
+      </tr>
+
+      <tr>
+        <td>{{'Region start_key'|translate}}</td>
+        <td>{{region.start_key}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Region end_key'|translate}}</td>
+        <td>{{region.end_key}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Region Peers'|translate}}</td>
+        <td>{{region.peers}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Region Leader Store'|translate}}</td>
+        <td>{{region.leader.store_id}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'Region approximate_size'|translate}}</td>
+        <td>{{region.approximate_size}}</td>
+      </tr>
+
+  </table>
+
+</div> <!-- End of this angular page -->

@@ -1,0 +1,49 @@
+
+<!-- The regions page, refer to static/js/controller -->
+<div>
+
+   <span class="page-header">
+    <!-- Display images title and the JSON link -->
+    <h1 class="page-header-left">{{'TiKV Regions'|translate}} <a ng-href="{{canonicalServer}}/regions/json" target="_blank"><img src="static/img/json-logo.png" height="32"></a></h1>
+
+    <!-- Display search form in the right -->
+    <div class="page-header-right">
+      <input type="text" class="form-control" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
+    </div>
+  </span> <!-- End of page header -->
+
+  <!-- Todo: No need to use <br/> -->
+  <br/><br/><br/><br/>
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!regions.length" class="alert alert-danger" role="alert">{{'no_regions'|translate}}</div>
+
+
+  <!-- Display all images information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><a href="" ng-click="predicate='id'; reverse=!reverse">{{'Id'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='start_key'; reverse=!reverse">{{'start_key'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='end_key'; reverse=!reverse">{{'end_key Leader'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='peers'; reverse=!reverse">{{'peers'|translate}}</a></th>		
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- When search result is null, display the message -->
+      <tr ng-show="(regions | filter: search).length == 0">
+        <td colspan="10" align="center">{{'no_search_result_for'|translate}} <b style="color:blue">{{search}}</b></td>
+      </tr>
+
+      <tr ng-repeat="region in regions | filter: search | orderBy:predicate:reverse track by $index ">
+	        <td><a ng-href="/region/{{region.id}}">{{region.id | limitTo:12}}</a></td> <!-- Shorten regions id -->
+	        <td>{{region.start_key}}</td> <!-- Add comma between tags -->
+	        <td>{{region.end_key}}</td> 
+			<td>{{region.peers}}</td> 
+	</tr>
+    </tbody>
+  </table>
+
+</div> <!-- End of this angular page -->
+

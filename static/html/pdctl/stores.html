@@ -1,0 +1,53 @@
+
+<!-- The stores page, refer to static/js/controller -->
+<div>
+
+   <span class="page-header">
+    <!-- Display images title and the JSON link -->
+    <h1 class="page-header-left">{{'TiKV Stores'|translate}}</h1>
+
+    <!-- Display search form in the right -->
+    <div class="page-header-right">
+      <input type="text" class="form-control" placeholder="{{'search'|translate}}" ng-model="search" autofocus>
+    </div>
+  </span> <!-- End of page header -->
+
+  <!-- Todo: No need to use <br/> -->
+  <br/><br/><br/><br/>
+
+  <!-- Alert if we get nothing from server -->
+  <div ng-show="!stores.length" class="alert alert-danger" role="alert">{{'no_stores'|translate}}</div>
+
+
+  <!-- Display all images information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><a href="" ng-click="predicate='id'; reverse=!reverse">{{'Id'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='address'; reverse=!reverse">{{'Address'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='leaders'; reverse=!reverse">{{'Regions Leader'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='regions'; reverse=!reverse">{{'Regions'|translate}}</a></th>		
+        <th><a href="" ng-click="predicate='status'; reverse=!reverse">{{'Status'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='uptime'; reverse=!reverse">{{'Uptime'|translate}}</a></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- When search result is null, display the message -->
+      <tr ng-show="(stores | filter: search).length == 0">
+        <td colspan="10" align="center">{{'no_search_result_for'|translate}} <b style="color:blue">{{search}}</b></td>
+      </tr>
+
+      <tr ng-repeat="store in stores | filter: search | orderBy:predicate:reverse track by $index ">
+	        <td><a ng-href="/store/{{store.store.id}}">{{store.store.id | limitTo:12}}</a></td> <!-- Shorten stores id -->
+	        <td>{{store.store.address}}</td> <!-- Add comma between tags -->
+	        <td>{{store.status.leader_count}}</td> 
+			<td>{{store.status.region_count}}</td> 
+	        <td>{{store.store.state_name}}</td> 
+	        <td>{{store.status.uptime}}</td>
+	</tr>
+    </tbody>
+  </table>
+
+</div> <!-- End of this angular page -->
+
