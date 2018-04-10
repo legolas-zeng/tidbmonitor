@@ -40,10 +40,9 @@
 
       <tr ng-repeat="table in tables | filter: search | orderBy:predicate:reverse track by $index ">
 	       	<td>{{table.id}}</td> <!-- Add comma between tags --> 
-			<td><a ng-href="/schema/{{table.name.L}}">{{table.name.L}}</a></td> <!-- Shorten tables id -->
+			<td><a ng-href="{{absurl}}/{{table.name.L}}">{{table.name.L}}</a></td> <!-- Shorten tables id -->
 	        <td>{{table.charset}}</td>
-	        <td>{{table.auto_inc_id}}</td> 
-			<td>{{table.status.region_count}}</td> 
+	        <td>{{table.auto_inc_id}}</td>
 	        <td>{{table.update_timestamp}}</td> 
 	        <td>{{table.comment}}</td>
 	</tr>
@@ -51,4 +50,5 @@
   </table>
 
 </div> <!-- End of this angular page -->
+
 

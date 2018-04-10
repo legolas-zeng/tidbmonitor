@@ -439,7 +439,7 @@ seagullControllers.controller('TiBDTalbeController',
   $scope.predicate = '';
   $scope.reverse = false;
 
-  $scope.table = table;
+  $scope.cols   = table.cols;
 
 });
 

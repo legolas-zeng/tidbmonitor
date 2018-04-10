@@ -101,12 +101,12 @@ seagull.config(['$locationProvider', '$routeProvider',
           }
         }
       }).
-       when('/schema/:db/:table', {
+       when('/table/:db/:table', {
         templateUrl: '/static/html/tidbctl/table.html',
         controller: 'TiBDTalbeController',
         resolve: {
-          table: function($rootScope, $route, $http) {
-            return $http.get($rootScope.canonicalServer + '/images/' + $route.current.params.db + "/" + $route.current.params.table + '/json').then(function(response) {
+          cols: function($rootScope, $route, $http) {
+            return $http.get($rootScope.canonicalServer + '/schema/' + $route.current.params.db + "/" + $route.current.params.table + '/json').then(function(response) {
               return response.data;
             });
           }

@@ -176,6 +176,8 @@ func (this *TiDBapiController) GetTidbTable() {
 
 	result := HttpTiDBRequest(address, "GET")
 
+	fmt.Println("GetTidbTable result: ", result)
+
 	this.Ctx.WriteString(result)
 }
 
