@@ -1,5 +1,5 @@
 FROM golang:1.6-alpine
-MAINTAINER tobe tobeg3oogle@gmail.com
+MAINTAINER tobe zhengwanbo@gmail.com
 
 # Install dependency
 RUN apk add -U git\
@@ -8,8 +8,8 @@ RUN apk add -U git\
     && rm -rf /var/cache/apk/* /tmp/*
 
 # Build seagull
-Add . /go/src/github.com/tobegit3hub/seagull/
-WORKDIR /go/src/github.com/tobegit3hub/seagull/
+Add . /go/src/github.com/zhengwanbo/tidbmonitor/
+WORKDIR /go/src/github.com/zhengwanbo/tidbmonitor/
 RUN go build seagull.go
 
 # Expose the port

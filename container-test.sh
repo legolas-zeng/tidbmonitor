@@ -2,7 +2,7 @@
 
 set -x
 
-PROJECT_NAME='github.com/tobegit3hub/seagull'
+PROJECT_NAME='github.com/zhengwanbo/tidbmonitor'
 PROJECT_DIR="${PWD}"
 VENDOR_DIR='Godeps/_workspace'
 

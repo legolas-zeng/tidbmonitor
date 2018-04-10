@@ -3,7 +3,7 @@ version: '2'
 services:
   seagull:
     restart: always
-    image: tobegit3hub/seagull
+    image: zhengwanbo/tidbmonitor
     ports:
       - "10086:10086"
     volumes:

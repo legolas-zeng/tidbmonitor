@@ -1,6 +1,5 @@
 FROM alpine:3.3
-MAINTAINER tobe "tobeg3oogle@gmail.com"
-MAINTAINER Florin Patan "florinpatan@gmail.com"
+MAINTAINER tobe "zhengwanbo@gmail.com"
 
 ARG BINARY_FILE
 
@@ -12,11 +11,11 @@ RUN apk add --update ca-certificates \
     && rm -rf /var/cache/apk/*
 
 # Binary
-ADD conf/app.conf /seagull/conf/app.conf
-COPY views /seagull/views
-COPY static /seagull/static
-ADD $BINARY_FILE /seagull/seagull
+ADD conf/app.conf /tidbmonitor/conf/app.conf
+COPY views /tidbmonitor/views
+COPY static /tidbmonitor/static
+ADD $BINARY_FILE /tidbmonitor/tidbmonitor
 
 # Runtime
 EXPOSE 10086
-CMD ["/seagull/seagull"]
+CMD ["/tidbmonitor/tidbmonitor"]
