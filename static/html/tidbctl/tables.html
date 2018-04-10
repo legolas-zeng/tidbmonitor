@@ -43,7 +43,7 @@
 			<td><a ng-href="{{absurl}}/{{table.name.L}}">{{table.name.L}}</a></td> <!-- Shorten tables id -->
 	        <td>{{table.charset}}</td>
 	        <td>{{table.auto_inc_id}}</td>
-	        <td>{{table.update_timestamp}}</td> 
+	        <td>{{table.update_timestamp / 262144000 * 1000 | date:'yyyy-MM-dd HH:mm:ss Z' }}</td> 
 	        <td>{{table.comment}}</td>
 	</tr>
     </tbody>

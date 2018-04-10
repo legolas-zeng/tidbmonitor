@@ -24,7 +24,7 @@ docker run --rm \
 
 # Disable this to strip the debug information from the binary and shave off about 4Mb making the binary from 12mb to 8mb
 # It means this can't be debugged by delve, gdb et al. but the side is even better
-strip "${PROJECT_DIR}/seagull"
+strip "${PROJECT_DIR}/tidbmonitor"
 
 docker build -f ${PROJECT_DIR}/tidbmonitor.docker \
     -t ${CONTAINER_NAME}:${CONTAINER_TAG} \

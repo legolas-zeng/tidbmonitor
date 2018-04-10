@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  seagull:
+  tidbmonitor:
     restart: always
     image: zhengwanbo/tidbmonitor
     ports:

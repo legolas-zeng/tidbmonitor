@@ -7,13 +7,13 @@ RUN apk add -U git\
     && apk del git \
     && rm -rf /var/cache/apk/* /tmp/*
 
-# Build seagull
+# Build tidbmonitor
 Add . /go/src/github.com/zhengwanbo/tidbmonitor/
 WORKDIR /go/src/github.com/zhengwanbo/tidbmonitor/
-RUN go build seagull.go
+RUN go build tidb_monitor.go
 
 # Expose the port
 EXPOSE 10086
 
 # Run the server
-CMD ["./seagull"]
+CMD ["./tidbmonitor"]
