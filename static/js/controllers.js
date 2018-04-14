@@ -6,7 +6,7 @@ function alert_success(message) {
   $.gritter.add({
     title: 'Success!',
     text: message,
-    image: 'static/img/seagull-logo.png',
+    image: 'static/img/tidb_logo.png',
     time: 3000
   });
 }
@@ -16,7 +16,7 @@ function alert_error(message) {
   $.gritter.add({
     title: 'Error!',
     text: message,
-    image: 'static/img/seagull-logo.png',
+    image: 'static/img/tidb_logo.png',
     time: 3000
   });
 }
@@ -26,17 +26,9 @@ var seagullControllers = angular.module('seagullControllers', []);
 
 /* This controller to get comment from beego api */
 seagullControllers.controller('HomeController',
-  function($scope, $rootScope, $routeParams, version, info) {
+  function($scope, $rootScope, $routeParams) {
 
-  $scope.version = version;
-  $scope.Os = $scope.version.Os;
-  $scope.KernelVersion = $scope.version.KernelVersion;
-  $scope.GoVersion = $scope.version.GoVersion;
-  $scope.Version = $scope.version.Version;
 
-  $scope.info = info;
-  $scope.Containers = $scope.info.Containers;
-  $scope.Images = $scope.info.Images;
 });
 
 /* Contaienrs controller requests beego API server to get/start/stop/delete containers */
@@ -435,11 +427,10 @@ seagullControllers.controller('TiBDTalbesController',
 seagullControllers.controller('TiBDTalbeController',
   function($scope, $rootScope, $routeParams, $http, table) {
 
-  // Sort table, refer to https://docs.angularjs.org/api/ng/filter/orderBy
   $scope.predicate = '';
   $scope.reverse = false;
 
-  $scope.cols   = table.cols;
+  $scope.table   = table.cols;
 
 });
 

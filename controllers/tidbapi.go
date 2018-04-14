@@ -8,24 +8,19 @@ package controllers
  */
 
 import (
-	"github.com/astaxie/beego"
-
 	"fmt"
 	"io/ioutil"
 	"log"
-	//	"net"
+
 	"net/http"
-	//	"net/http/httputil"
-	//	"net/url"
-	//	"strconv"
 	"strings"
+
+	"github.com/astaxie/beego"
+	"github.com/pingcap/tidbmonitor/models"
 )
 
 /* Give address and method to request docker unix socket */
 func HttpRequest(address, method string) string {
-	//PD_ADDR := "http://127.0.0.1:2379"
-	// Example: http://127.0.0.1:2379/pd/api/v1/stores
-	//pd_obj_url := PD_ADDR + address
 
 	reader := strings.NewReader("")
 
@@ -62,24 +57,28 @@ func HttpRequest(address, method string) string {
 }
 
 func HttpPDRequest(address, method string) string {
-	PD_ADDR := "http://172.16.10.25:2379"
-	//	PD_ADDR := "http://" + pdip + ":" + pdport
+
+	Conf, _ := models.GetTiDBHost()
+
+	PD_ADDR := "http://" + Conf.PDip + ":" + Conf.PDport
 
 	// Example: http://127.0.0.1:2379/pd/api/v1/stores
 	pd_obj_url := PD_ADDR + address
 
-	fmt.Println("Server reports: ", pd_obj_url)
+	fmt.Println(" PD URI: ", pd_obj_url)
 
 	return HttpRequest(pd_obj_url, method)
 }
 
 func HttpTiDBRequest(address, method string) string {
-	TiDB_ADDR := "http://172.16.10.20:10080"
-	//TiDB_ADDR := "http://" + tidbip + ":" + tidbport
-	// Example: http://127.0.0.1:10080/status
+
+	Conf, _ := models.GetTiDBHost()
+
+	TiDB_ADDR := "http://" + Conf.Tidbip + ":" + Conf.Tidbport
+
 	pd_obj_url := TiDB_ADDR + address
 
-	fmt.Println("Server reports: ", pd_obj_url)
+	fmt.Println(" TIDB URI: ", pd_obj_url)
 	return HttpRequest(pd_obj_url, method)
 }
 
@@ -164,7 +163,6 @@ func (this *TiDBapiController) GetTidbTables() {
 
 	result := HttpTiDBRequest(address, "GET")
 
-	fmt.Println("Server result: ", result)
 	this.Ctx.WriteString(result)
 }
 
@@ -176,8 +174,7 @@ func (this *TiDBapiController) GetTidbTable() {
 
 	result := HttpTiDBRequest(address, "GET")
 
-	fmt.Println("GetTidbTable result: ", result)
-
+	fmt.Println("TiDB reponse: ", result)
 	this.Ctx.WriteString(result)
 }
 

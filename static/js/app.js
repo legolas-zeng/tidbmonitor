@@ -51,20 +51,8 @@ seagull.config(['$locationProvider', '$routeProvider',
       when('/', {
         templateUrl: '/static/html/home.html',
         controller: 'HomeController',
-        resolve: {
-          version: function($rootScope, $http) {
-            /* Get the version object */
-            return $http.get($rootScope.canonicalServer + '/version').then(function(response) {
-              return response.data;
-            });
-          },
-          info: function($rootScope, $http) {
-            /* Get the info object */
-            return $http.get($rootScope.canonicalServer + '/info').then(function(response) {
-              return response.data;
-            });
-          }
-        }
+		controllerAs: 'home'
+      
       }).
      when('/tistatus', {
         templateUrl: '/static/html/tidbctl/tistatus.html',
@@ -89,7 +77,7 @@ seagull.config(['$locationProvider', '$routeProvider',
           }
         }
       }).	
-	when('/schema/:db', {
+	 when('/schema/:db', {
         templateUrl: '/static/html/tidbctl/tables.html',
         controller: 'TiBDTalbesController',
         resolve: {
@@ -101,18 +89,18 @@ seagull.config(['$locationProvider', '$routeProvider',
           }
         }
       }).
-       when('/table/:db/:table', {
+      when('/schema/:db/:table', {
         templateUrl: '/static/html/tidbctl/table.html',
         controller: 'TiBDTalbeController',
         resolve: {
-          cols: function($rootScope, $route, $http) {
+          table: function($rootScope, $route, $http) {
             return $http.get($rootScope.canonicalServer + '/schema/' + $route.current.params.db + "/" + $route.current.params.table + '/json').then(function(response) {
               return response.data;
             });
           }
         }
-      }).		
-     when('/stores', {
+      }).
+      when('/stores', {
         templateUrl: '/static/html/pdctl/stores.html',
         controller: 'StoresController',
         resolve: {
@@ -129,7 +117,6 @@ seagull.config(['$locationProvider', '$routeProvider',
         controller: 'StoreController',
         resolve: {
           store: function($rootScope, $route, $http) {
-            /* Request beego API server to get image */
             return $http.get($rootScope.canonicalServer + '/store/' + $route.current.params.id + '/json').then(function(response) {
               return response.data;
             });
@@ -195,23 +182,11 @@ seagull.config(['$locationProvider', '$routeProvider',
             });
           }
         }
-      }).
-      when('/dockerhub', {
-        templateUrl: '/static/html/dockerhub.html',
-        controller: 'DockerhubController',
-        resolve: {
-          images: function($rootScope, $http) {
-            /* Request beego API server to get search images, default is seagull */
-            return $http.get($rootScope.canonicalServer + '/images/search?term=seagull').then(function(response) {
-              return response.data;
-            });
-          }
-        }
-      });
-      /* No default page for angular so that beego can process API request 
-      otherwise({
+      })
+      /* No default page for angular so that beego can process API request */
+      .otherwise({
         redirectTo: '/'
-      }); */
+      }); 
   }]
 );
 

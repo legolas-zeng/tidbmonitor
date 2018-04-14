@@ -39,30 +39,11 @@ func Init() {
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
 	}
+
 }
 
 func TableName(name string) string {
 	return beego.AppConfig.String("db.prefix") + name
 }
 
-// *****************************************************************************
-// Application Settings
-// *****************************************************************************
 
-// config the settings variable
-var config = &configuration{}
-
-// configuration contains the application settings
-type configuration struct {
-	pdip     string
-	pdport   string
-	tidbip   string
-	tidbport string
-}
-
-func (c *configuration) getURI() {
-	c.pdip = beego.AppConfig.String("pdipt")
-	c.pdport = beego.AppConfig.String("pdport")
-	c.tidbip = beego.AppConfig.String("tidbip")
-	c.tidbport = beego.AppConfig.String("tidbport")
-}

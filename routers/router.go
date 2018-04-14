@@ -42,6 +42,7 @@ func init() {
 	beego.Router("/schema", &controllers.MainController{})
 	beego.Router("/schema/:db", &controllers.MainController{})
 	beego.Router("/schema/:db/:table", &controllers.MainController{})
+	beego.Router("/table/:table", &controllers.MainController{})
 
 	beego.Router("/stores", &controllers.MainController{})
 	beego.Router("/store/:id", &controllers.MainController{})
