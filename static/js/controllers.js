@@ -419,6 +419,8 @@ seagullControllers.controller('TiBDTalbesController',
   $scope.predicate = '';
   $scope.reverse = false;
 
+  $scope.idb = $routeParams.db;
+
   $scope.tables = tables;
 
 });
@@ -496,6 +498,7 @@ seagullControllers.controller('RegionController',
   function($scope, $rootScope, $routeParams, region) {
 
   $scope.region = region;
+
 });
 
 /* Members controller requests beego API server to get members */
@@ -517,6 +520,7 @@ seagullControllers.controller('ConfigController',
   function($scope, $rootScope, $routeParams, config) {
 
   $scope.config = config;
+
 });
 
 /* Dockerhub controller requests beego API server to get search images */

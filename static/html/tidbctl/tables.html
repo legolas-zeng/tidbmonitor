@@ -40,7 +40,7 @@
 
       <tr ng-repeat="table in tables | filter: search | orderBy:predicate:reverse track by $index ">
 	       	<td>{{table.id}}</td> <!-- Add comma between tags --> 
-			<td><a ng-href="{{currentUrl}}/{{table.name.L}}">{{table.name.L}}</a></td> <!-- Shorten tables id -->
+			<td><a ng-href="/schema/{{idb}}/{{table.name.L}}">{{table.name.L}}</a></td> <!-- Shorten tables id -->
 	        <td>{{table.charset}}</td>
 	        <td>{{table.auto_inc_id}}</td>
 	        <td>{{table.update_timestamp / 262144000 * 1000 | date:'yyyy-MM-dd HH:mm:ss Z' }}</td> 
