@@ -42,7 +42,7 @@
       <tr ng-repeat="col in table | filter: search | orderBy:predicate:reverse track by $index ">
 	       	<td>{{col.id}}</td>
 			<td>{{col.name.L}}</td>
-	        <td>{{col.type.Tp}}({{col.type.Flen}})</td>
+	        <td>{{cType(col.type.Tp)}}({{col.type.Flen}})</td>
 	        <td>{{col.dependences}}</td>
 	        <td>{{col.type.Flag}}</td>
 	        <td>{{col.default}}</td>

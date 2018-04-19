@@ -432,6 +432,39 @@ seagullControllers.controller('TiBDTalbeController',
   $scope.predicate = '';
   $scope.reverse = false;
 
+  /* Determine column type */
+  $scope.cType = function(id) {
+	var returnString = "";
+	switch(id)
+	{
+	    case 254:
+	        returnString = 'char'
+	        break;
+	    case 246:
+	         returnString = 'decimal'
+	        break;
+	    case 15:
+	         returnString = 'varchar'
+	        break;
+	    case 2:
+	         returnString = 'smallint'
+	        break;
+	    case 1:
+	         returnString = 'tinyint'
+	        break;
+	    case 3:
+	         returnString = 'int'
+	        break;
+	    case 12:
+	         returnString= 'datetime'
+	        break;
+	    default:
+	        break;
+	}
+	return returnString;
+	
+  };
+
   $scope.table   = table.cols;
 
 });
