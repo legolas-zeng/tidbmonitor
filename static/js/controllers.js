@@ -424,10 +424,9 @@ seagullControllers.controller('TiBDTalbesController',
   $scope.tables = tables;
 
 });
-
-
+	
 seagullControllers.controller('TiBDTalbeController',
-  function($scope, $rootScope, $routeParams, $http, table) {
+  function($scope, $rootScope, $routeParams, $http, size, regions, table ) {
 
   $scope.predicate = '';
   $scope.reverse = false;
@@ -455,17 +454,28 @@ seagullControllers.controller('TiBDTalbeController',
 	    case 3:
 	         returnString = 'int'
 	        break;
+	    case 4:
+	         returnString = 'float'
+	        break;
 	    case 12:
 	         returnString= 'datetime'
 	        break;
-	    default:
+	    case 7:
+	         returnString= 'timestamp'
 	        break;
+	    default:
+	       returnString= id
+			break;
 	}
 	return returnString;
 	
   };
 
+  $scope.tbname = $routeParams.table;
   $scope.table   = table.cols;
+
+  $scope.size   = size;
+  $scope.regions   = regions.record_regions;
 
 });
 

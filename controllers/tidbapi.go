@@ -177,6 +177,29 @@ func (this *TiDBapiController) GetTidbTable() {
 	this.Ctx.WriteString(result)
 }
 
+/*get GetTidbTable information. */
+func (this *TiDBapiController) GetTidbTableDiskusage() {
+	db := this.GetString(":db")
+	table := this.GetString(":table")
+	address := "/tables/" + db + "/" + table + "/disk-usage"
+
+	result := HttpTiDBRequest(address, "GET")
+
+	this.Ctx.WriteString(result)
+}
+
+/*get GetTidbTable information. */
+func (this *TiDBapiController) GetTidbTableRegions() {
+	db := this.GetString(":db")
+	table := this.GetString(":table")
+	address := "/tables/" + db + "/" + table + "/regions"
+
+	result := HttpTiDBRequest(address, "GET")
+
+	//	fmt.Println("Server result: ", result)
+	this.Ctx.WriteString(result)
+}
+
 /*get GetTidbSetting information. */
 func (this *TiDBapiController) GetTidbSetting() {
 	address := "/settings"

@@ -5,7 +5,7 @@
 
    <span class="page-header">
     <!-- Display images title and the JSON link -->
-    <h1 class="page-header-left">{{'TiDB Table Cloumes'|translate}}</h1>
+    <h1 class="page-header-left"> {{tbname}}'s {{'cloumes info' |translate}}, disk usages size : {{size}} </h1>
 
     <!-- Display search form in the right -->
     <div class="page-header-right">
@@ -19,7 +19,7 @@
   <!-- Alert if we get nothing from server -->
   <div ng-show="!table.length" class="alert alert-danger" role="alert">{{'no_table'|translate}}</div>
 
-  <!-- Display all images information -->
+  <!-- Display all table columns information -->
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -48,6 +48,37 @@
 	        <td>{{col.default}}</td>
 			<td>{{col.comment}}</td>
 	  </tr>
+	
+    </tbody>
+  </table>
+  <!-- Todo: No need to use <br/> to move content below the navigation bar -->
+  <br/><br/>
+ 
+  <h1 class="page-header-left"> {{tbname}}'s {{'region info' |translate}} </h1>
+ 
+  <!-- Display all table regions information -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><a href="" ng-click="predicate='region_id'; reverse=!reverse">{{'region_id'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='leader_store'; reverse=!reverse">{{'leader_store'|translate}}</a></th>
+        <th><a href="" ng-click="predicate='conf_ver'; reverse=!reverse">{{'conf_ver'|translate}}</a></th>		
+        <th><a href="" ng-click="predicate='version'; reverse=!reverse">{{'version'|translate}}</a></th>	
+        <th><a href="" ng-click="predicate='peer_store'; reverse=!reverse">{{'peer_store '|translate}}</a></th>
+      </tr>
+    </thead>
+
+    <tbody ng-repeat="info in regions ">
+	      <tr ng-repeat="peer in info.peers track by $index ">
+		    <td ng-if="$index ==0" rowspan={{info.peers.length}}>{{info.region_id}}</td>
+			<td ng-if="$index ==0" rowspan={{info.peers.length}}>{{info.leader.store_id}}</td>
+			<td ng-if="$index ==0" rowspan={{info.peers.length}}>{{info.region_epoch.conf_ver}}</td>
+			<td ng-if="$index ==0" rowspan={{info.peers.length}}>{{info.region_epoch.version}}</td>
+		    <td>
+                <span ng-bind="peer.store_id"></span>
+            </td>
+	     </tr>
+	
     </tbody>
   </table>
 

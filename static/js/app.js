@@ -97,6 +97,16 @@ seagull.config(['$locationProvider', '$routeProvider',
             return $http.get($rootScope.canonicalServer + '/schema/' + $route.current.params.db + "/" + $route.current.params.table + '/json').then(function(response) {
               return response.data;
             });
+          },
+		  regions: function($rootScope, $route, $http) {
+            return $http.get($rootScope.canonicalServer + '/tables/' + $route.current.params.db + "/" + $route.current.params.table + '/regions/json').then(function(response) {
+              return response.data;
+            });
+          },
+	      size: function($rootScope, $route, $http) {
+            return $http.get($rootScope.canonicalServer + '/tables/' + $route.current.params.db + "/" + $route.current.params.table + '/disk-usage/json').then(function(response) {
+              return response.data;
+            });
           }
         }
       }).
